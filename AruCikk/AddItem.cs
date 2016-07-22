@@ -39,7 +39,7 @@ namespace AruCikk
                 textBox1.Text = item.ItemName;
                 textBox2.Text = item.ItemNo;
                 textBox3.Text = item.Barcode;
-                comboBox1.ValueMember = item.Unit;
+                comboBox1.SelectedIndex = comboBox1.FindStringExact(item.Unit);
                 
             }
             else

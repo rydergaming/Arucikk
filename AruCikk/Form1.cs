@@ -26,6 +26,8 @@ namespace AruCikk
         private void Form1_Load(object sender, EventArgs e)
         {
             bindingSource1.DataSource = _items;
+            if (_items.Count == 0)
+                editButton.Enabled = false;
             
         }
 
@@ -49,13 +51,9 @@ namespace AruCikk
                     {
                         _items.Add(item);
                     }));
-                    if (backgroundWorker1.CancellationPending)
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
                 }
             }
+            Invoke(new Action(() => { editButton.Enabled = true; }));
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
