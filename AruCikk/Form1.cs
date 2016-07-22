@@ -86,24 +86,28 @@ namespace AruCikk
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            AddItem addItem = new AddItem();
-            addItem.edit = true;
-            addItem.item = (Item)bindingSource1.Current;
-            if (addItem.ShowDialog() == DialogResult.OK)
+            using (AddItem addItem = new AddItem())
             {
-                _items[bindingSource1.Position] = addItem.item;
+                addItem.edit = true;
+                addItem.item = (Item)bindingSource1.Current;
+                if (addItem.ShowDialog() == DialogResult.OK)
+                {
+                    _items[bindingSource1.Position] = addItem.item;
+                }
             }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            AddItem addItem = new AddItem();
-            addItem.edit = false;
-            if (addItem.ShowDialog() == DialogResult.OK)
+            using (AddItem addItem = new AddItem())
             {
-                Item tmpItem = addItem.item;
-                //MessageBox.Show(tmpItem.Unit);
-                _items.Add(tmpItem);
+                addItem.edit = false;
+                if (addItem.ShowDialog() == DialogResult.OK)
+                {
+                    Item tmpItem = addItem.item;
+                    //MessageBox.Show(tmpItem.Unit);
+                    _items.Add(tmpItem);
+                }
             }
         }
 
